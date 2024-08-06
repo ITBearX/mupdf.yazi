@@ -39,7 +39,7 @@ function M:preload()
         :stderr(Command.PIPED)
         :output()
 
-    if output and output.status:success() then
+    if output and output.status.success then
         return fs.write(cache, output.stdout) and 1 or 2
     else
         ya.manager_emit("peek", { math.max(0, self.skip), only_if = self.file.url })
